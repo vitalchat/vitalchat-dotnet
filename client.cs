@@ -111,9 +111,9 @@ public class Client
         return results;
     }
     
-    public string enter(string device_id, string name) {
+    public string enter(string device_id, string name, string device_description) {
         string url = String.Format("/v1/devices/{0}/enter", device_id);
-        string body = String.Format("{{\"name\":\"{0}\"}}", name);
+        string body = String.Format("{{\"name\":\"{0}\",\"device_description\":\"{1}\"}}", name, device_description);
 		string results = this.post(url, body);
         return results;
 	}
@@ -125,6 +125,6 @@ public class Program
 	{
         Client client = new Client("https://DOMAIN", "YOUR_KEY", "YOUR_SECRET");
 		Console.WriteLine(client.devices());
-        Console.WriteLine(client.enter("DEVICE_ID", "NAME_TO_SHOW_TO_PATIENT"));
+        Console.WriteLine(client.enter("DEVICE_ID", "NAME_TO_SHOW_TO_PATIENT", "META_DATA"));
 	}
 }
